@@ -14,6 +14,7 @@ import school.sptech.projeto_integrador_api.pontosTuristicos.model.PontoTuristic
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -26,12 +27,33 @@ public class PontoTuristicoRepository {
         this.mapper = mapper;
     }
 
-    public List<PontoTuristicoResponse> getAll() {
+    public List<PontoTuristicoResponse> getAll(String query, String categoria, String estado) {
         String sql = """
                 SELECT * FROM ponto_turistico
+                WHERE 1=1
                 """;
 
-        var lista = template.query(sql, new BeanPropertyRowMapper<>(PontoTuristico.class));
+        List<String> params = new ArrayList<>();
+
+        if(query != null && !query.isBlank()) {
+            sql += " AND (LOWER(nome) LIKE ? OR LOWER(descricao) LIKE ?)";
+            params.add("%" + query.toLowerCase() + "%");
+            params.add("%" + query.toLowerCase() + "%");
+        }
+        if(categoria != null) {
+            sql += " AND categoria=?";
+            params.add(categoria);
+        }
+        if(estado != null) {
+            sql += " AND estado=?";
+            params.add(estado);
+        }
+
+        var lista = template.query(
+                sql,
+                new BeanPropertyRowMapper<>(PontoTuristico.class),
+                params.toArray()
+        );
         return lista.stream()
                 .map(mapper::toResponse)
                 .toList();

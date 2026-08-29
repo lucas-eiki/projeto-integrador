@@ -19,10 +19,14 @@ public class PontoTuristicoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PontoTuristicoResponse>> getAll() {
-        var resposta = pontoTuristicoService.getAll();
+    public ResponseEntity<List<PontoTuristicoResponse>> getAll(
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String categoria,
+            @RequestParam(required = false) String estado
+    ) {
+        var resposta = pontoTuristicoService.getAll(q, categoria, estado);
         if(resposta.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(resposta);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(resposta);
     }
