@@ -9,6 +9,7 @@ import school.sptech.projeto_integrador_api.pontosTuristicos.service.PontoTurist
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/pontos-turisticos")
 public class PontoTuristicoController {
