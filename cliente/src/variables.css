@@ -1,0 +1,18 @@
+:root {
+    --cor-primaria: #04820D;
+    --cor-secundaria: #44B534;
+    --cor-terciaria: #688345;
+    --cor-contraste: #BF762C;
+    --cor-contraste-secundaria: #87521d;
+
+    --cor-branca: #fafafa;
+    --cor-preta: #121212;
+    --cor-cinza: #393939;
+
+    --titulo: 3rem;
+    --subtitulo: 2rem;
+    --texto-minusculo: 0.875rem;
+    --texto-pequeno: 1rem;
+    --texto-medio: 1.5rem;
+    --texto-grande: 1.75rem;
+}
