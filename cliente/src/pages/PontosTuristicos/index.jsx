@@ -4,6 +4,7 @@ import { Header } from "../../components/Header"
 import { ModalCadastroPontoTuristico } from "../../components/ModalCadastroPontoTuristico"
 
 import styles from './index.module.css';
+import { CardPontoTuristico } from "../../components/CardPontoTuristico";
 
 export const PontosTuristicos = () => {
     const [pontosTuristicos, setPontosTuristicos] = useState([]);
