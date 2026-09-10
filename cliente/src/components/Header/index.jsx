@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./index.module.css";
 
 export const Header = () => {
@@ -5,9 +7,9 @@ export const Header = () => {
         <header className={styles.header}>
             <div className={styles.conteudo}>
                 <nav className={styles.nav}>
-                    <a href="#">Projeto Integrador</a>
-                    <a href="#">Início</a>
-                    <a href="#">Buscar</a>
+                    <Link to="/">Projeto Integrador</Link>
+                    <Link to="/">Início</Link>
+                    <Link to="/pontos-turisticos">Pontos Turísticos</Link>
                 </nav>
                 <div className={styles.botoes}>
                     <button className={styles.botao}>Entrar</button>

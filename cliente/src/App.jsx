@@ -1,11 +1,11 @@
-import { Header } from "./components/Header"
-import { PontosTuristicos } from "./pages/PontosTuristicos"
+import {RouterProvider} from "react-router-dom"
+import { routes } from "./routes"
+
 
 function App() {
   return (
     <>
-      <Header />
-      <PontosTuristicos />
+      <RouterProvider router={routes} />
     </>
   )
 }

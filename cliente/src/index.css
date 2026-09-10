@@ -10,3 +10,9 @@ body {
     background-color: var(--cor-branca);
     min-height: 100vh;
 }
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

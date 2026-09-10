@@ -1,53 +1,115 @@
-.main {
-    max-width: 1200px;
-    height: 100%;
-
+.corpo {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
+    flex: 1;
+    min-height: 100%;
 
-    padding: 32px;
-    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
 }
 
-.titulo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+.aside {
+    width: 33%;
 
-    p {
-        color: var(--cor-cinza);
+    min-height: 100%;
+    padding: 16px;
+
+    .labelEstado {
+        font-size: var(--texto-pequeno);
+        font-weight: 400;
+
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.5);
     }
 }
 
-.barraPesquisaContainer {
-    position: relative;
-    width: 100%;
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.barraPesquisa {
+.estados {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputText {
     width: 100%;
     border-radius: 8px;
     border: 1px solid var(--cor-cinza);
-    padding: 8px 16px;
-    font-size: var(--texto-medio);
+    padding: 4px 8px;
+    font-size: var(--texto-pequeno);
 }
 
-.lupa {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
-    svg path {
-        fill: #777;
+h3,
+label {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.btnBuscar {
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    padding-right: 12px;
+    font-size: var(--texto-pequeno);
+    color: var(--cor-branca);
+    background-color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        background-color: var(--cor-primaria);
+    }
+}
+
+.main {
+    padding: 32px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnAdicionar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    padding-right: 12px;
+    font-size: var(--texto-pequeno);
+    color: var(--cor-branca);
+    background-color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        background-color: var(--cor-primaria);
+    }
+
+    svg {
+        width: 32px;
     }
 }
 
