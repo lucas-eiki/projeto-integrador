@@ -1,0 +1,121 @@
+.corpo {
+    display: flex;
+    flex: 1;
+    min-height: 100%;
+
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+.aside {
+    width: 33%;
+
+    min-height: 100%;
+    padding: 16px;
+
+    .labelEstado {
+        font-size: var(--texto-pequeno);
+        font-weight: 400;
+
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.5);
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.estados {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputText {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--cor-cinza);
+    padding: 4px 8px;
+    font-size: var(--texto-pequeno);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+h3,
+label {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.btnBuscar {
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    padding-right: 12px;
+    font-size: var(--texto-pequeno);
+    color: var(--cor-branca);
+    background-color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        background-color: var(--cor-primaria);
+    }
+}
+
+.main {
+    padding: 32px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnAdicionar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    padding-right: 12px;
+    font-size: var(--texto-pequeno);
+    color: var(--cor-branca);
+    background-color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        background-color: var(--cor-primaria);
+    }
+
+    svg {
+        width: 32px;
+    }
+}
+
+.listaPontosTuristicos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}

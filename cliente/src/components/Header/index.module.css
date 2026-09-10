@@ -1,0 +1,70 @@
+.header {
+    background-color: var(--cor-primaria);
+    padding: 20px 32px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.conteudo {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: var(--texto-medio);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    a {
+        color: var(--cor-branca);
+
+        transition: .2s ease-in-out;
+
+        &:hover {
+            text-decoration: underline;
+        }
+        &:first-child:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.botao {
+    color: var(--cor-branca);
+    font-size: var(--texto-medio);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+
+    transition: .2s ease-in-out;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.botaoCadastrar {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: var(--cor-contraste);
+    color: var(--cor-branca);
+
+    &:hover {
+        text-decoration: none;
+        background-color: var(--cor-contraste-secundaria);
+    }
+}
