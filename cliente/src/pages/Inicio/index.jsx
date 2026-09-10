@@ -14,6 +14,8 @@ export const Inicio = () => {
             const resposta = await axios.get("http://localhost:8080/pontos-turisticos");
             if (resposta.status == 200) {
                 setPontosTuristicos(resposta.data);
+            } else if (resposta.status == 204) {
+                setPontosTuristicos([]);
             } else {
                 alert("Erro ao buscar pontos turísticos")
             }
