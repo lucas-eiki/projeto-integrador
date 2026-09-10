@@ -20,8 +20,8 @@ public class PontoTuristicoService {
         this.pontoTuristicoRepository = pontoTuristicoRepository;
     }
 
-    public List<PontoTuristicoResponse> getAll(String query, String categoria, String estado) {
-        return pontoTuristicoRepository.getAll(query, categoria, estado);
+    public List<PontoTuristicoResponse> getAll(String query, String categoria, List<Integer> estadosId) {
+        return pontoTuristicoRepository.getAll(query, categoria, estadosId);
     }
 
     public PontoTuristicoResponse getById(Long id) {
@@ -68,7 +68,7 @@ public class PontoTuristicoService {
         if(request.endereco() == null || request.endereco().isBlank()) {
             erros.put("endereco", "Preencha o endereço corretamente");
         }
-        if(request.estado() == null) {
+        if(request.estadoId() == null) {
             erros.put("estado", "Preencha o estado corretamente");
         }
         if(request.categoria() == null || request.categoria().isBlank()) {

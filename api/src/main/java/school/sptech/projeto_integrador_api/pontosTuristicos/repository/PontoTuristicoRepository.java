@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import school.sptech.projeto_integrador_api.estados.repository.EstadoRepository;
 import school.sptech.projeto_integrador_api.pontosTuristicos.dto.PontoTuristicoRequest;
 import school.sptech.projeto_integrador_api.pontosTuristicos.dto.PontoTuristicoResponse;
 import school.sptech.projeto_integrador_api.pontosTuristicos.exception.PontoTuristicoNaoEncontradoException;
@@ -16,18 +17,21 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PontoTuristicoRepository {
     private final JdbcTemplate template;
     private final PontoTuristicoMapper mapper;
+    private final EstadoRepository estadoRepository;
 
-    public PontoTuristicoRepository(JdbcTemplate template, PontoTuristicoMapper mapper) {
+    public PontoTuristicoRepository(JdbcTemplate template, PontoTuristicoMapper mapper, EstadoRepository estadoRepository) {
         this.template = template;
         this.mapper = mapper;
+        this.estadoRepository = estadoRepository;
     }
 
-    public List<PontoTuristicoResponse> getAll(String query, String categoria, String estado) {
+    public List<PontoTuristicoResponse> getAll(String query, String categoria, List<Integer> estadosId) {
         String sql = """
                 SELECT * FROM ponto_turistico
                 WHERE 1=1
@@ -44,9 +48,9 @@ public class PontoTuristicoRepository {
             sql += " AND categoria=?";
             params.add(categoria);
         }
-        if(estado != null) {
-            sql += " AND estado=?";
-            params.add(estado);
+        if(estadosId != null && !estadosId.isEmpty()) {
+            sql += " AND estado IN ?";
+            params.add("(" + estadosId.stream().map(String::valueOf).collect(Collectors.joining(", ")) + ")");
         }
 
         var lista = template.query(
@@ -75,7 +79,7 @@ public class PontoTuristicoRepository {
 
     public PontoTuristicoResponse post(PontoTuristicoRequest request) {
         String sql = """
-                INSERT INTO ponto_turistico (nome, descricao, endereco, estado, categoria)
+                INSERT INTO ponto_turistico (nome, descricao, endereco, estadoId, categoria)
                 VALUES (?, ?, ?, ?, ?)
                 """;
 
@@ -90,11 +94,13 @@ public class PontoTuristicoRepository {
             statement.setString(1, request.nome());
             statement.setString(2, request.descricao());
             statement.setString(3, request.endereco());
-            statement.setString(4, request.estado().getNome());
+            statement.setInt(4, request.estadoId());
             statement.setString(5, request.categoria());
 
             return statement;
         }, holder);
+
+        String estadoNome = estadoRepository.getNomeById(request.estadoId());
 
         Long id = (long) holder.getKeyAs(Integer.class);
 
@@ -103,7 +109,7 @@ public class PontoTuristicoRepository {
                 request.nome(),
                 request.descricao(),
                 request.endereco(),
-                request.estado(),
+                estadoNome,
                 request.categoria()
         );
     }
@@ -114,7 +120,7 @@ public class PontoTuristicoRepository {
                 nome=?,
                 descricao=?,
                 endereco=?,
-                estado=?,
+                estadoId=?,
                 categoria=?
                 WHERE id=?
                 """;
@@ -124,17 +130,19 @@ public class PontoTuristicoRepository {
                 request.nome(),
                 request.descricao(),
                 request.endereco(),
-                request.estado().getNome(),
+                request.estadoId(),
                 request.categoria(),
                 id
         );
+
+        String estadoNome = estadoRepository.getNomeById(request.estadoId());
 
         return new PontoTuristicoResponse(
                 id,
                 request.nome(),
                 request.descricao(),
                 request.endereco(),
-                request.estado(),
+                estadoNome,
                 request.categoria()
         );
     }
@@ -156,7 +164,7 @@ public class PontoTuristicoRepository {
                 nome=? AND
                 descricao=? AND
                 endereco=? AND
-                estado=?
+                estadoId=?
                 """;
 
         var resposta = template.queryForObject(
@@ -165,7 +173,7 @@ public class PontoTuristicoRepository {
                 request.nome(),
                 request.descricao(),
                 request.endereco(),
-                request.estado().getNome()
+                request.estadoId()
         );
 
         return resposta != null && resposta > 0;

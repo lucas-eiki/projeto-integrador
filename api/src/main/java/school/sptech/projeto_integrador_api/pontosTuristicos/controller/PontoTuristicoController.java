@@ -23,9 +23,9 @@ public class PontoTuristicoController {
     public ResponseEntity<List<PontoTuristicoResponse>> getAll(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String categoria,
-            @RequestParam(required = false) String estado
+            @RequestParam(required = false) List<Integer> estadosId
     ) {
-        var resposta = pontoTuristicoService.getAll(q, categoria, estado);
+        var resposta = pontoTuristicoService.getAll(q, categoria, estadosId);
         if(resposta.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }

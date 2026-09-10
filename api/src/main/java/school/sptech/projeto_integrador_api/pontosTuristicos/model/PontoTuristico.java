@@ -5,7 +5,7 @@ public class PontoTuristico {
     private String nome;
     private String descricao;
     private String endereco;
-    private String estado;
+    private Integer estadoId;
     private String categoria;
 
     public PontoTuristico() {
@@ -43,12 +43,12 @@ public class PontoTuristico {
         this.endereco = endereco;
     }
 
-    public String getEstado() {
-        return estado;
+    public Integer getEstadoId() {
+        return estadoId;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setEstadoId(Integer estadoId) {
+        this.estadoId = estadoId;
     }
 
     public String getCategoria() {
