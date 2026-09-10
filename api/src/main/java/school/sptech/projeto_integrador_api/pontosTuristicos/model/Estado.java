@@ -31,7 +31,7 @@ public enum Estado {
     SAO_PAULO("São Paulo"),
     SERGIPE("Sergipe"),
     TOCANTINS("Tocantins"),
-    NENHUM("Nenhum");
+    EXTERIOR("Exterior");
 
     private final String nome;
 

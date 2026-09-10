@@ -1,17 +1,30 @@
-import { useState } from "react"
-import {estados} from "./estados"
+import { useEffect, useState } from "react"
+// import {estados} from "./estados"
 
 import axios from "axios"
 
 import styles from "./index.module.css";
 
-export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
+export const ModalCadastroPontoTuristico = ({setIsCadastrando, buscarPontosTuristicos}) => {
 
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
     const [endereco, setEndereco] = useState("");
-    const [estado, setEstado] = useState("");
+    const [estadoId, setEstadoId] = useState("");
     const [categoria, setCategoria] = useState("");
+
+    const [estados, setEstados] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const respostaEstados = await axios.get("http://localhost:8080/estados")
+            if (respostaEstados.status == 200) {
+                setEstados(respostaEstados.data);
+            }
+        }
+
+        fetchData()
+    }, [])
 
     async function cadastrarPontoTuristico() {
         try {
@@ -20,11 +33,11 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
                     "nome": nome,
                     "descricao": descricao,
                     "endereco": endereco,
-                    "estado": estado,
+                    "estadoId": estadoId,
                     "categoria": categoria
                 }
             )
-
+            await buscarPontosTuristicos();
             fecharModal();
             alert("Ponto turístico cadastrado com sucesso");
         } catch (erro) {
@@ -33,7 +46,7 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
                 const erros = erro.response.data.erros;
                 const mensagemErro = Object.values(erros).join("\n");
                 alert(mensagemErro);
-                return
+                return;
             }
             if (erro.response.status == 409) {
                 alert(erro.response.data.mensagem);
@@ -48,7 +61,7 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
         setNome("");
         setDescricao("");
         setEndereco("");
-        setEstado("");
+        setEstadoId("");
         setCategoria("");
     }
 
@@ -65,9 +78,9 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
             <input className={styles.input} type="text" placeholder="Nome do ponto turístico" onChange={(e) => setNome(e.target.value)} value={nome}/>
             <textarea className={styles.input} type="text" placeholder="Descrição do local" onChange={(e) => setDescricao(e.target.value)} value={descricao}/>
             <input className={styles.input} type="text" placeholder="Endereço do local" onChange={(e) => setEndereco(e.target.value)} value={endereco}/>
-            <select className={styles.input} name="estado" id="estado" onChange={(e) => setEstado(e.target.value)} value={estado}>
+            <select className={styles.input} name="estado" id="estado" onChange={(e) => setEstadoId(e.target.value)} value={estadoId}>
                 <option value="">Selecione um Estado</option>
-                {estados.map((estado, index) => <option key={index} value={estado}>{estado}</option>)}
+                {estados.map(estado => <option key={estado.id} value={estado.id}>{estado.nome}</option>)}
             </select>
             <input className={styles.input} type="text" placeholder="Categoria do ponto turístico" onChange={(e) => setCategoria(e.target.value)} value={categoria}/>
             <button className={styles.btnCadastrar} onClick={cadastrarPontoTuristico}>Cadastrar</button>
