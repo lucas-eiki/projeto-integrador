@@ -46,6 +46,10 @@ public enum Estado {
 
     @JsonCreator
     public static Estado fromNome(String nome) {
+        if (nome == null || nome.isBlank()) {
+            return null;
+        }
+
         for (Estado estado : Estado.values()) {
             if (estado.getNome().equalsIgnoreCase(nome)) {
                 return estado;

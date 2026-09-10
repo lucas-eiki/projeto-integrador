@@ -28,7 +28,18 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
             fecharModal();
             alert("Ponto turístico cadastrado com sucesso");
         } catch (erro) {
-            alert(erro.message);
+            console.log(erro.response);
+            if (erro.response.status == 400) {
+                const erros = erro.response.data.erros;
+                const mensagemErro = Object.values(erros).join("\n");
+                alert(mensagemErro);
+                return
+            }
+            if (erro.response.status == 409) {
+                alert(erro.response.data.mensagem);
+                return;
+            }
+            alert("Ocorreu um erro ao cadastrar o ponto turístico.")
         }
     }
 
