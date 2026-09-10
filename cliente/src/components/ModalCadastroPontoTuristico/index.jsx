@@ -25,16 +25,26 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando}) => {
                 }
             )
 
+            fecharModal();
             alert("Ponto turístico cadastrado com sucesso");
         } catch (erro) {
             alert(erro.message);
         }
     }
 
+    function fecharModal() {
+        setIsCadastrando(false);
+        setNome("");
+        setDescricao("");
+        setEndereco("");
+        setEstado("");
+        setCategoria("");
+    }
+
     return (
         <div className={styles.modal}>
             <button className={styles.btnFechar}
-                onClick={() => setIsCadastrando(false)}
+                onClick={fecharModal}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                 {/* <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--> */}
