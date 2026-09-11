@@ -20,8 +20,8 @@ public class PontoTuristicoService {
         this.pontoTuristicoRepository = pontoTuristicoRepository;
     }
 
-    public List<PontoTuristicoResponse> getAll(String query, String categoria, List<Integer> estadosId) {
-        return pontoTuristicoRepository.getAll(query, categoria, estadosId);
+    public List<PontoTuristicoResponse> getAll(String query, String endereco, List<Integer> estadosId) {
+        return pontoTuristicoRepository.getAll(query, endereco, estadosId);
     }
 
     public PontoTuristicoResponse getById(Long id) {

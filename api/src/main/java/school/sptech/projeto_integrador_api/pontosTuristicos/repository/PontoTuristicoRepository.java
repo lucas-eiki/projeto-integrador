@@ -31,26 +31,29 @@ public class PontoTuristicoRepository {
         this.estadoRepository = estadoRepository;
     }
 
-    public List<PontoTuristicoResponse> getAll(String query, String categoria, List<Integer> estadosId) {
+    public List<PontoTuristicoResponse> getAll(String query, String endereco, List<Integer> estadosId) {
         String sql = """
                 SELECT * FROM ponto_turistico
                 WHERE 1=1
                 """;
 
-        List<String> params = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
 
         if(query != null && !query.isBlank()) {
             sql += " AND (LOWER(nome) LIKE ? OR LOWER(descricao) LIKE ?)";
             params.add("%" + query.toLowerCase() + "%");
             params.add("%" + query.toLowerCase() + "%");
         }
-        if(categoria != null) {
-            sql += " AND categoria=?";
-            params.add(categoria);
+        if(endereco != null) {
+            sql += " AND LOWER(endereco) LIKE ?";
+            params.add("%" + endereco.toLowerCase() + "%");
         }
         if(estadosId != null && !estadosId.isEmpty()) {
-            sql += " AND estado IN ?";
-            params.add("(" + estadosId.stream().map(String::valueOf).collect(Collectors.joining(", ")) + ")");
+            String placeholders = estadosId.stream()
+                    .map(id -> "?")
+                    .collect(Collectors.joining(", "));
+            sql += " AND estadoId IN (" + placeholders + ")";
+            params.addAll(estadosId);
         }
 
         var lista = template.query(

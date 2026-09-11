@@ -14,7 +14,7 @@ export const PontosTuristicos = () => {
         estados: []
     })
     const [estados, setEstados] = useState([]);
-    
+
     const [isCadastrando, setIsCadastrando] = useState(false);
 
     useEffect(() => {
@@ -31,39 +31,50 @@ export const PontosTuristicos = () => {
     }, [])
 
     async function buscarPontosTuristicos() {
-        const resposta = await axios.get("http://localhost:8080/pontos-turisticos");
-            if (resposta.status == 200) {
-                setPontosTuristicos(resposta.data);
-            } else if (resposta.status == 204) {
-                setPontosTuristicos([]);
-            } else {
-                alert("Erro ao buscar pontos turísticos")
+        const resposta = await axios.get(`http://localhost:8080/pontos-turisticos`, {
+            params: {
+                q: formData.pesquisa,
+                endereco: formData.endereco,
+                estadosId: formData.estados
             }
+        });
+        if (resposta.status == 200) {
+            setPontosTuristicos(resposta.data);
+        } else if (resposta.status == 204) {
+            setPontosTuristicos([]);
+        } else {
+            alert("Erro ao buscar pontos turísticos")
+        }
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        console.log(formData);
-
+        buscarPontosTuristicos();
     }
 
     function handleOnChange(event) {
         const { name, value } = event.target;
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [name]: value
-        })
+        }))
     }
 
     function handleOnChangeCheckbox(event) {
         const { checked, value } = event.target;
         setFormData(prev => ({
             ...prev,
-            estados: checked
-            ? [...prev.estados, value]
-            : prev.estados.filter(estado => estado !== value)
+            estados: checked ? [...prev.estados, value] : prev.estados.filter(estado => estado !== value)
         }))
+    }
+
+    function desmarcarTodos() {
+        setFormData(prev => ({ ...prev, estados: [] }));
+    }
+
+    function limparCampo(campo) {
+        setFormData(prev => ({ ...prev, [campo]: "" }))
     }
 
     return (
@@ -74,19 +85,28 @@ export const PontosTuristicos = () => {
                 <aside className={styles.aside}>
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <div className={styles.inputContainer}>
-                            <label htmlFor="pesquisa-ipt">Pesquisar</label>
-                            <input className={styles.inputText} onChange={handleOnChange} type="text" name="pesquisa" id="pesquisa-ipt" placeholder="Nome, descrição..." />
+                            <div className={styles.labelContainer}>
+                                <label htmlFor="pesquisa-ipt">Pesquisar</label>
+                                {formData.pesquisa != "" && <button onClick={() => limparCampo("pesquisa")}>Limpar</button>}
+                            </div>
+                            <input className={styles.inputText} onChange={handleOnChange} type="text" name="pesquisa" id="pesquisa-ipt" placeholder="Nome, descrição.." value={formData.pesquisa} />
                         </div>
                         <div className={styles.inputContainer}>
-                            <label htmlFor="endereco-ipt">Endereço</label>
-                            <input className={styles.inputText} onChange={handleOnChange} type="text" name="endereco" id="endereco-ipt" placeholder="Endereço..." />
+                            <div className={styles.labelContainer}>
+                                <label htmlFor="endereco-ipt">Endereço</label>
+                                {formData.endereco != "" && <button onClick={() => limparCampo("endereco")}>Limpar</button>}
+                            </div>
+                            <input className={styles.inputText} onChange={handleOnChange} type="text" name="endereco" id="endereco-ipt" placeholder="Endereço..." value={formData.endereco} />
                         </div>
 
-                        <h3>Estado</h3>
+                        <div className={styles.estadoLabelContainer}>
+                            <h3>Estado</h3>
+                            {formData.estados.length > 0 && <button onClick={desmarcarTodos}>Limpar seleção</button>}
+                        </div>
                         <div className={styles.estados}>
                             {estados.map(estado =>
                                 <label key={estado.id} className={styles.labelEstado}>
-                                    <input onChange={handleOnChangeCheckbox} type="checkbox" name="estados" value={estado.id} id={estado.id} />
+                                    <input onChange={handleOnChangeCheckbox} type="checkbox" name="estados" value={estado.id} id={estado.id} checked={formData.estados.includes(String(estado.id))} />
                                     {estado.nome}
                                 </label>
                             )}

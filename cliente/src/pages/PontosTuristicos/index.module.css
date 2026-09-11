@@ -34,6 +34,38 @@
     gap: 16px;
 }
 
+.labelContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    button {
+        background-color: transparent;
+        border: none;
+        color: #0066CC;
+        text-decoration: underline;
+        font-size: var(--texto-pequeno);
+
+        cursor: pointer;
+    }
+}
+
+.estadoLabelContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        background-color: transparent;
+        border: none;
+        color: #0066CC;
+        text-decoration: underline;
+        font-size: var(--texto-pequeno);
+
+        cursor: pointer;
+    }
+}
+
 .estados {
     display: flex;
     flex-direction: column;
@@ -86,6 +118,7 @@ label {
 .topo {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 16px;
 }
 
 .btnAdicionar {

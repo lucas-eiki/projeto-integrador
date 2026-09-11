@@ -22,10 +22,10 @@ public class PontoTuristicoController {
     @GetMapping
     public ResponseEntity<List<PontoTuristicoResponse>> getAll(
             @RequestParam(required = false) String q,
-            @RequestParam(required = false) String categoria,
+            @RequestParam(required = false) String endereco,
             @RequestParam(required = false) List<Integer> estadosId
     ) {
-        var resposta = pontoTuristicoService.getAll(q, categoria, estadosId);
+        var resposta = pontoTuristicoService.getAll(q, endereco, estadosId);
         if(resposta.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
