@@ -60,6 +60,7 @@ export const Inicio = () => {
                     {pontosTuristicos.length > 0 ?
                         pontosTuristicos.map(pontoTuristico =>
                             <CardPontoTuristico key={pontoTuristico.id}
+                                id={pontoTuristico.id}
                                 nome={pontoTuristico.nome}
                                 descricao={pontoTuristico.descricao}
                                 endereco={pontoTuristico.endereco}

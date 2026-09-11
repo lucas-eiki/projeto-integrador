@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styles from "./index.module.css";
 
-export const CardPontoTuristico = ({ nome, descricao, endereco, estado, categoria }) => {
+export const CardPontoTuristico = ({ id, nome, descricao, endereco, estado, categoria }) => {
 
     return (
         <div className={styles.pontoTuristico}>
@@ -16,7 +17,7 @@ export const CardPontoTuristico = ({ nome, descricao, endereco, estado, categori
                 </svg>
                 <p>{endereco} - {estado}</p>
             </div>
-            <button className={styles.verDetalhes}>Ver Detalhes</button>
+            <Link to={`/pontos-turisticos/${id}`} className={styles.verDetalhes}>Ver Detalhes</Link>
         </div>
     )
 }
