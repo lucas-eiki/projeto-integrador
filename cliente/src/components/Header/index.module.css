@@ -6,6 +6,28 @@
     justify-content: center;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: 800;
+    background-color: #a8e0ab;
+    border-radius: 100px;
+    padding: 2px 12px 2px 4px;
+
+    .corPrimaria {
+        color: var(--cor-primaria);
+    }
+
+    .corContraste {
+        color: var(--cor-contraste);
+    }
+
+    svg {
+        width: 32px;
+    }
+}
+
 .conteudo {
     max-width: 1200px;
     width: 100%;
