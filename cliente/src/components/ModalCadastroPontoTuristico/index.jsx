@@ -74,13 +74,13 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando, buscarPontosTuris
             </button>
             <h3>Cadastre um novo ponto turístico</h3>
             <input className={styles.input} type="text" placeholder="Nome do ponto turístico" onChange={(e) => setNome(e.target.value)} value={nome}/>
+            <input className={styles.input} type="text" placeholder="Categoria do ponto turístico" onChange={(e) => setCategoria(e.target.value)} value={categoria}/>
             <textarea className={styles.input} type="text" placeholder="Descrição do local" onChange={(e) => setDescricao(e.target.value)} value={descricao}/>
-            <input className={styles.input} type="text" placeholder="Endereço do local" onChange={(e) => setEndereco(e.target.value)} value={endereco}/>
             <select className={styles.input} name="estado" id="estado" onChange={(e) => setEstadoId(e.target.value)} value={estadoId}>
                 <option value="">Selecione um Estado</option>
                 {estados.map(estado => <option key={estado.id} value={estado.id}>{estado.nome}</option>)}
             </select>
-            <input className={styles.input} type="text" placeholder="Categoria do ponto turístico" onChange={(e) => setCategoria(e.target.value)} value={categoria}/>
+            <input className={styles.input} type="text" placeholder="Endereço do local" onChange={(e) => setEndereco(e.target.value)} value={endereco}/>
             <button className={styles.btnCadastrar} onClick={cadastrarPontoTuristico}>Cadastrar</button>
         </div>
     )
