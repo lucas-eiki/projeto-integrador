@@ -12,7 +12,7 @@ export const routes = createBrowserRouter([
     {
         path: "/pontos-turisticos",
         element: <PontosTuristicos />,
-        errorElement: <div>Erro ao carrecar a página dos Pontos Turísticos</div>,
+        errorElement: <div>Erro ao carregar a página dos Pontos Turísticos</div>,
     },
     {
         path: "/pontos-turisticos/:id",

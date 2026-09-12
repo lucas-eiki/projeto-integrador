@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-// import {estados} from "./estados"
 
 import axios from "axios"
 
@@ -41,7 +40,6 @@ export const ModalCadastroPontoTuristico = ({setIsCadastrando, buscarPontosTuris
             fecharModal();
             alert("Ponto turístico cadastrado com sucesso");
         } catch (erro) {
-            console.log(erro.response);
             if (erro.response.status == 400) {
                 const erros = erro.response.data.erros;
                 const mensagemErro = Object.values(erros).join("\n");
