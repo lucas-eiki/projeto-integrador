@@ -16,10 +16,6 @@ export const Header = () => {
                     <Link to="/">Início</Link>
                     <Link to="/pontos-turisticos">Pontos Turísticos</Link>
                 </nav>
-                <div className={styles.botoes}>
-                    <button className={styles.botao}>Entrar</button>
-                    <button className={`${styles.botao} ${styles.botaoCadastrar}`}>Cadastrar</button>
-                </div>
             </div>
         </header>
     )
