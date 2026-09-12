@@ -47,7 +47,7 @@ export const Inicio = () => {
                 </div>
 
                 <div className={styles.barraPesquisaContainer}>
-                    <input className={styles.barraPesquisa} type="text" placeholder="Pesquisar por nome ou descrição..." value={pesquisa} onChange={e => handleOnChange(e)}/>
+                    <input className={styles.barraPesquisa} type="text" placeholder="Pesquisar por nome, descrição ou categoria" value={pesquisa} onChange={e => handleOnChange(e)}/>
                     <button className={styles.lupa} onClick={buscarPontosTuristicos}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             {/* <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--> */}

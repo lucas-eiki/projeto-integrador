@@ -40,7 +40,8 @@ public class PontoTuristicoRepository {
         List<Object> params = new ArrayList<>();
 
         if(query != null && !query.isBlank()) {
-            sql += " AND (LOWER(nome) LIKE ? OR LOWER(descricao) LIKE ?)";
+            sql += " AND (LOWER(nome) LIKE ? OR LOWER(descricao) LIKE ? OR LOWER(categoria) LIKE ?)";
+            params.add("%" + query.toLowerCase() + "%");
             params.add("%" + query.toLowerCase() + "%");
             params.add("%" + query.toLowerCase() + "%");
         }

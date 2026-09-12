@@ -89,7 +89,7 @@ export const PontosTuristicos = () => {
                                 <label htmlFor="pesquisa-ipt">Pesquisar</label>
                                 {formData.pesquisa != "" && <button onClick={() => limparCampo("pesquisa")}>Limpar</button>}
                             </div>
-                            <input className={styles.inputText} onChange={handleOnChange} type="text" name="pesquisa" id="pesquisa-ipt" placeholder="Nome, descrição.." value={formData.pesquisa} />
+                            <input className={styles.inputText} onChange={handleOnChange} type="text" name="pesquisa" id="pesquisa-ipt" placeholder="Nome, descrição, categoria..." value={formData.pesquisa} />
                         </div>
                         <div className={styles.inputContainer}>
                             <div className={styles.labelContainer}>
