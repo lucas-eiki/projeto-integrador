@@ -141,6 +141,7 @@ export const PontosTuristicos = () => {
                                     endereco={pontoTuristico.endereco}
                                     estado={pontoTuristico.estado}
                                     categoria={pontoTuristico.categoria}
+                                    buscarPontosTuristicos={buscarPontosTuristicos}
                                 />
                             )
                             :

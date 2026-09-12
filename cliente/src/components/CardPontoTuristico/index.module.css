@@ -67,3 +67,70 @@
         background-color: var(--cor-primaria);
     }
 }
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.maisAcoesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: relative;
+}
+
+.maisAcoes {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    padding: 4px;
+
+    transition: .2s ease-in-out;
+
+    svg {
+        width: 100%;
+    }
+
+    &:hover {
+        background-color: #ccc;
+    }
+}
+
+.botoesMaisAcoes {
+    position: absolute;
+    top: 36px;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    background-color: #eee;
+    border-radius: 8px;
+
+    button {
+        width: 150px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size: var(--texto-medio);
+        padding: 8px;
+        font-weight: 500;
+
+        transition: .2s ease-in-out;
+
+        &:hover {
+            background-color: #ccc;
+        }
+    }
+}
+
+.botaoExcluir {
+    color: #de4032;
+}

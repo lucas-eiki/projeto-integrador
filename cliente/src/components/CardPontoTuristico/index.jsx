@@ -1,13 +1,38 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
 import styles from "./index.module.css";
 
-export const CardPontoTuristico = ({ id, nome, descricao, endereco, estado, categoria }) => {
+export const CardPontoTuristico = ({ id, nome, descricao, endereco, estado, categoria, buscarPontosTuristicos }) => {
+    const [isMaisAcoesAtivo, setIsMaisAcoesAtivo] = useState(false);
+
+    async function deletarPontoTuristico() {
+        await axios.delete(`http://localhost:8080/pontos-turisticos/${id}`);
+        await buscarPontosTuristicos();
+    }
 
     return (
         <div className={styles.pontoTuristico}>
-            <div className={styles.titulo}>
-                <h2>{nome}</h2>
-                <span className={styles.categoria}>{categoria}</span>
+            <div className={styles.topo}>
+                <div className={styles.titulo}>
+                    <h2>{nome}</h2>
+                    <span className={styles.categoria}>{categoria}</span>
+                </div>
+                <div className={styles.maisAcoesContainer}>
+                    <button onClick={() => setIsMaisAcoesAtivo(prev => !prev)} className={styles.maisAcoes}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            {/* <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--> */}
+                            <path fill="#121212" d="M320 208C289.1 208 264 182.9 264 152C264 121.1 289.1 96 320 96C350.9 96 376 121.1 376 152C376 182.9 350.9 208 320 208zM320 432C350.9 432 376 457.1 376 488C376 518.9 350.9 544 320 544C289.1 544 264 518.9 264 488C264 457.1 289.1 432 320 432zM376 320C376 350.9 350.9 376 320 376C289.1 376 264 350.9 264 320C264 289.1 289.1 264 320 264C350.9 264 376 289.1 376 320z" /></svg>
+                    </button>
+                    {
+                        isMaisAcoesAtivo &&
+                        <div className={styles.botoesMaisAcoes}>
+                            <button>Editar</button>
+                            <button onClick={deletarPontoTuristico} className={styles.botaoExcluir}>Excluir</button>
+                        </div>
+                    }
+                </div>
             </div>
             <p className={styles.descricao}>{descricao}</p>
             <div className={styles.enderecoContainer}>
