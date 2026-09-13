@@ -1,0 +1,64 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    width: 100%;
+    max-width: 1000px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid var(--cor-cinza);
+    border-radius: 16px;
+    background-color: var(--cor-branca);
+
+    box-shadow: 0px 0px 8px 0px rgba(18,18,18,0.5);
+}
+
+.btnFechar {
+    width: 32px;
+    background-color: transparent;
+    border: none;
+
+    position: absolute;
+    top: 8px;
+    right: 16px;
+
+    cursor: pointer;
+}
+
+.input {
+    background-color: var(--cor-branca);
+    color: var(--cor-cinza);
+    font-family: "Inter", sans-serif;
+    padding: 8px;
+    border: 1px solid var(--cor-cinza);
+    border-radius: 8px;
+
+    font-size: var(--texto-pequeno);
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+.btnCadastrar {
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    padding-right: 12px;
+    font-size: var(--texto-pequeno);
+    color: var(--cor-branca);
+    background-color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        background-color: var(--cor-primaria);
+    }
+}

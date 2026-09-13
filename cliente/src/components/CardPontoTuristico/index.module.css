@@ -1,0 +1,136 @@
+.pontoTuristico {
+    padding: 12px;
+    border: 1px solid var(--cor-cinza);
+    border-radius: 8px;
+
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.categoria {
+    color: var(--cor-branca);
+    font-weight: 500;
+    background-color: var(--cor-contraste);
+    width: fit-content;
+    font-size: var(--texto-minusculo);
+    padding: 4px 12px;
+    border-radius: 100px;
+}
+
+.descricao {
+    color: var(--cor-cinza);
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.enderecoContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 2px;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+
+        path {
+            fill: #de4032;
+        }
+    }
+}
+
+.verDetalhes {
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: var(--texto-pequeno);
+    color: var(--cor-branca);
+    background-color: var(--cor-secundaria);
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        background-color: var(--cor-primaria);
+    }
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.maisAcoesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: relative;
+}
+
+.maisAcoes {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    padding: 4px;
+
+    transition: .2s ease-in-out;
+
+    svg {
+        width: 100%;
+    }
+
+    &:hover {
+        background-color: #ccc;
+    }
+}
+
+.botoesMaisAcoes {
+    position: absolute;
+    top: 36px;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    background-color: #eee;
+    border-radius: 8px;
+
+    button {
+        width: 150px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size: var(--texto-medio);
+        padding: 8px;
+        font-weight: 500;
+
+        transition: .2s ease-in-out;
+
+        &:hover {
+            background-color: #ccc;
+        }
+    }
+}
+
+.botaoExcluir {
+    color: #de4032;
+}
