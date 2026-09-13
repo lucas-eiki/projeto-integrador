@@ -65,6 +65,9 @@ public class PontoTuristicoService {
         if(request.nome() == null || request.nome().isBlank()) {
             erros.put("nome", "Preencha o nome corretamente");
         }
+        if(request.descricao() == null || request.descricao().isBlank()) {
+            erros.put("descricao", "Preencha a descrição corretamente");
+        }
         if(request.endereco() == null || request.endereco().isBlank()) {
             erros.put("endereco", "Preencha o endereço corretamente");
         }
